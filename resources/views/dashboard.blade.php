@@ -53,13 +53,27 @@
 			const config = {
 				type: 'bar',
 				data: data,
-				options: {}
+				options: {
+					plugins: {
+						title: {
+							display: true,
+							text: 'Evolution chiffre d\'affaire'
+						}
+					}
+				}
 			};
 
 			const config_patient = {
 				type: 'bar',
 				data: data_patients,
-				options: {}
+				options: {
+					plugins: {
+						title: {
+							display: true,
+							text: 'Evolution du nombre de patients'
+						}
+					}
+				}
 			};
 
 			var myChart = new Chart(
@@ -79,11 +93,9 @@
 		
 		<div class="row mt-5">
 			<div class="col">
-				<h2>Chiffre d'affaire</h2>
 				<canvas id="ca"></canvas>
 			</div>
 			<div class="col">
-				<h2>Patients</h2>
 				<canvas id="patients"></canvas>
 			</div>
 		</div>
