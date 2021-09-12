@@ -25,7 +25,7 @@ class PaiementsController extends Controller
     public function index()
     {
 		$all = $this->PaiementsService->get_recap(date('Y-m-01'), date('Y-m-t'));
-
+		
         return view('paiements.index', [
 				'ca_brut' => $all["ca_brut"],
 				'retro' =>  $all["retro"],
