@@ -1,4 +1,2 @@
-<x-layout>
-	<x-slot name="title">Dashboard</x-slot>
-	
-</x-layout>
+@extends('components.layout')
+	@section('title', 'Dashboard')

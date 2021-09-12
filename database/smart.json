@@ -1,0 +1,296 @@
+{
+    "clients": {
+        "model": "App\\Models\\Clients",
+        "modelArgs": [],
+        "modelConnection": "mysql",
+        "fields": {
+            "clients_id": {
+                "type": "increments",
+                "typeArgs": []
+            },
+            "clients_inserted": {
+                "type": "timestamp",
+                "typeArgs": [],
+                "useCurrent": true
+            },
+            "clients_updated": {
+                "type": "timestamp",
+                "typeArgs": [],
+                "rawDefault": "\\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')"
+            },
+            "clients_valide": {
+                "type": "boolean",
+                "typeArgs": [],
+                "index": true,
+                "default": true
+            },
+            "clients_nom": {
+                "type": "string",
+                "typeArgs": []
+            },
+            "clients_prenom": {
+                "type": "string",
+                "typeArgs": []
+            }
+        }
+    },
+    "impots_config": {
+        "model": "App\\Models\\ImpotsConfig",
+        "modelArgs": [],
+        "modelConnection": "mysql",
+        "fields": {
+            "impotsconfig_id": {
+                "type": "increments",
+                "typeArgs": []
+            },
+            "impotsconfig_inserted": {
+                "type": "timestamp",
+                "typeArgs": [],
+                "useCurrent": true
+            },
+            "impotsconfig_updated": {
+                "type": "timestamp",
+                "typeArgs": [],
+                "rawDefault": "\\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')"
+            },
+            "impotsconfig_valide": {
+                "type": "boolean",
+                "typeArgs": [],
+                "index": true,
+                "default": true
+            },
+            "impotsconfig_abattement_pourcentage": {
+                "type": "decimal",
+                "typeArgs": [
+                    8,
+                    2
+                ]
+            },
+            "impotsconfig_acre_pourcentage": {
+                "type": "decimal",
+                "typeArgs": [
+                    8,
+                    2
+                ]
+            },
+            "impotsconfig_start": {
+                "type": "date",
+                "typeArgs": []
+            },
+            "impotsconfig_end": {
+                "type": "date",
+                "typeArgs": [],
+                "nullable": true
+            }
+        }
+    },
+    "paiements": {
+        "model": "App\\Models\\Paiements",
+        "modelArgs": [],
+        "modelConnection": "mysql",
+        "fields": {
+            "paiements_id": {
+                "type": "increments",
+                "typeArgs": []
+            },
+            "paiements_inserted": {
+                "type": "timestamp",
+                "typeArgs": [],
+                "useCurrent": true
+            },
+            "paiements_updated": {
+                "type": "timestamp",
+                "typeArgs": [],
+                "rawDefault": "\\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')"
+            },
+            "paiements_valide": {
+                "type": "boolean",
+                "typeArgs": [],
+                "index": true,
+                "default": true
+            },
+            "paiements_montant": {
+                "type": "decimal",
+                "typeArgs": [
+                    10,
+                    2
+                ]
+            },
+            "paiements_date": {
+                "type": "date",
+                "typeArgs": []
+            },
+            "methode": {
+                "type": "unsignedInteger",
+                "typeArgs": [],
+                "belongsTo": {
+                    "model": "App\\Models\\PaiementsMethode",
+                    "foreignKey": "paiements_methode"
+                }
+            },
+            "user": {
+                "type": "unsignedInteger",
+                "typeArgs": [],
+                "belongsTo": {
+                    "model": "App\\Models\\User",
+                    "foreignKey": "paiements_user"
+                }
+            },
+            "clients": {
+                "type": "unsignedInteger",
+                "typeArgs": [],
+                "belongsTo": {
+                    "model": "App\\Models\\Clients",
+                    "foreignKey": "paiements_clients"
+                }
+            },
+            "remise_cheques": {
+                "type": "unsignedInteger",
+                "typeArgs": [],
+                "nullable": true,
+                "belongsTo": {
+                    "model": "App\\Models\\RemiseCheques",
+                    "foreignKey": "paiements_remisecheques"
+                }
+            }
+        }
+    },
+    "paiements_methode": {
+        "model": "App\\Models\\PaiementsMethode",
+        "modelArgs": [],
+        "modelConnection": "mysql",
+        "fields": {
+            "paiementsmethode_id": {
+                "type": "increments",
+                "typeArgs": []
+            },
+            "paiementsmethode_inserted": {
+                "type": "timestamp",
+                "typeArgs": [],
+                "useCurrent": true
+            },
+            "paiementsmethode_updated": {
+                "type": "timestamp",
+                "typeArgs": [],
+                "rawDefault": "\\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')"
+            },
+            "paiementsmethode_valide": {
+                "type": "boolean",
+                "typeArgs": [],
+                "index": true,
+                "default": true
+            },
+            "paiementsmethode_label": {
+                "type": "string",
+                "typeArgs": []
+            },
+            "paiementsmethode_code": {
+                "type": "string",
+                "typeArgs": []
+            }
+        }
+    },
+    "retrocession_config": {
+        "model": "App\\Models\\RetrocessionConfig",
+        "modelArgs": [],
+        "modelConnection": "mysql",
+        "fields": {
+            "retroconfig_id": {
+                "type": "increments",
+                "typeArgs": []
+            },
+            "retroconfig_inserted": {
+                "type": "timestamp",
+                "typeArgs": [],
+                "useCurrent": true
+            },
+            "retroconfig_updated": {
+                "type": "timestamp",
+                "typeArgs": [],
+                "rawDefault": "\\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')"
+            },
+            "retroconfig_valide": {
+                "type": "boolean",
+                "typeArgs": [],
+                "index": true,
+                "default": true
+            },
+            "retroconfig_pourcentage": {
+                "type": "decimal",
+                "typeArgs": [
+                    8,
+                    2
+                ]
+            }
+        }
+    },
+    "remise_cheques": {
+        "model": "App\\Models\\RemiseCheques",
+        "modelArgs": [],
+        "modelConnection": "mysql",
+        "fields": {
+            "remisecheques_id": {
+                "type": "increments",
+                "typeArgs": []
+            },
+            "remisecheques_inserted": {
+                "type": "timestamp",
+                "typeArgs": [],
+                "useCurrent": true
+            },
+            "remisecheques_updated": {
+                "type": "timestamp",
+                "typeArgs": [],
+                "rawDefault": "\\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')"
+            },
+            "remisecheques_valide": {
+                "type": "boolean",
+                "typeArgs": [],
+                "index": true,
+                "default": true
+            },
+            "remisecheques_numero": {
+                "type": "string",
+                "typeArgs": []
+            },
+            "remisecheques_date": {
+                "type": "date",
+                "typeArgs": []
+            }
+        }
+    },
+    "users": {
+        "model": "App\\Models\\User",
+        "modelArgs": [],
+        "modelConnection": "mysql",
+        "fields": {
+            "_id": {
+                "type": "increments",
+                "typeArgs": []
+            },
+            "_inserted": {
+                "type": "timestamp",
+                "typeArgs": [],
+                "useCurrent": true
+            },
+            "_updated": {
+                "type": "timestamp",
+                "typeArgs": [],
+                "rawDefault": "\\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP')"
+            },
+            "firstname": {
+                "type": "string",
+                "typeArgs": []
+            },
+            "retro_config": {
+                "type": "unsignedInteger",
+                "typeArgs": [],
+                "nullable": true,
+                "belongsTo": {
+                    "model": "App\\Models\\RetrocessionConfig",
+                    "foreignKey": "retroconfig"
+                }
+            }
+        }
+    }
+}
