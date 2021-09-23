@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PaiementsController;
 use App\Http\Controllers\RemiseChequesController;
+use App\Http\Controllers\ConfigurationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,6 @@ Route::get('/remise_cheques',  [RemiseChequesController::class, 'index'])->name(
 Route::get('/remise_cheques/add',  [RemiseChequesController::class, 'add_form'])->name('remise_cheques_add_form');
 Route::post('/remise_cheques/add',  [RemiseChequesController::class, 'add'])->name('add_remise_cheques');
 
+Route::get('/configuration',  [ConfigurationController::class, 'index'])->name('configuration');
+
+Auth::routes(['register' => false]);

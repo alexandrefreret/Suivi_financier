@@ -38,15 +38,30 @@
 			const data_patients = {
 				labels: labels,
 				datasets: [{
-					label: 'Nombre patients {{ $year_last }}',
+					label: 'Nombre de consultation {{ $year_last }}',
 					backgroundColor: 'rgb(56, 116, 237)',
 					borderColor: 'rgb(56, 116, 237)',
 					data: [{{ collect($tab_patients_last)->implode(',') }}],
 				},{
-					label: 'Nombre patients {{ $year_current }}',
+					label: 'Nombre de consultation {{ $year_current }}',
 					backgroundColor: 'rgb(255, 99, 132)',
 					borderColor: 'rgb(255, 99, 132)',
 					data: [{{ collect($tab_patients)->implode(',') }}],
+				}]
+			};
+
+			const data_new_patients = {
+				labels: labels,
+				datasets: [{
+					label: 'Nombre de nouveaux patients {{ $year_last }}',
+					backgroundColor: 'rgb(56, 116, 237)',
+					borderColor: 'rgb(56, 116, 237)',
+					data: [{{ collect($new_tab_patients_last)->implode(',') }}],
+				},{
+					label: 'Nombre de nouveaux patients {{ $year_current }}',
+					backgroundColor: 'rgb(255, 99, 132)',
+					borderColor: 'rgb(255, 99, 132)',
+					data: [{{ collect($new_tab_patients)->implode(',') }}],
 				}]
 			};
 
@@ -70,7 +85,20 @@
 					plugins: {
 						title: {
 							display: true,
-							text: 'Evolution du nombre de patients'
+							text: 'Evolution du nombre de consultation'
+						}
+					}
+				}
+			};
+
+			const config_new_patient = {
+				type: 'bar',
+				data: data_new_patients,
+				options: {
+					plugins: {
+						title: {
+							display: true,
+							text: 'Evolution du nombre de nouveaux patients'
 						}
 					}
 				}
@@ -85,6 +113,11 @@
 				document.getElementById('patients'),
 				config_patient
 			);
+
+			var myChart = new Chart(
+				document.getElementById('new_patients'),
+				config_new_patient
+			);
 		</script>
 	@endsection
 
@@ -97,6 +130,11 @@
 			</div>
 			<div class="col">
 				<canvas id="patients"></canvas>
+			</div>
+		</div>
+		<div class="row mt-5">
+			<div class="col-6">
+				<canvas id="new_patients"></canvas>
 			</div>
 		</div>
 	@endsection

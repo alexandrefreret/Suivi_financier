@@ -11,7 +11,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends AbstractAuthenticable
 {
-    
+    use Notifiable;
 
     protected $table = "users";
     public $primaryKey = "id";

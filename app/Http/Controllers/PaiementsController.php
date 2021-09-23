@@ -68,7 +68,7 @@ class PaiementsController extends Controller
 		
 		$datas = $validator->validated();
 		
-		if($datas["clients_id"] == null || $datas["clients_id"])
+		if($datas["clients_id"] == null)
 		{
 			//Création du client
 			$client = Clients::create([
